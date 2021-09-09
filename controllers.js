@@ -1,4 +1,4 @@
-const { callOpenWeather } = require("models.js");
+const { callOpenWeather } = require("./models.js");
 
 exports.getWeather = (req, res, next) => {
   const { lat, lng } = req.query;

@@ -1,14 +1,13 @@
 const express = require("express");
 const cors = require("cors");
+const { getWeather } = require("./controllers");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  console.log("request received!");
-});
+app.get("/api/weather", getWeather);
 
 const { PORT = 9090 } = process.env;
 app.listen(PORT, () => {
