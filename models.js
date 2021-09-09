@@ -11,3 +11,19 @@ exports.callOpenWeather = (lat, lng) => {
       return response.data.list;
     });
 };
+
+exports.callGoogleMaps = (lat, lng) => {
+  return axios
+    .get(
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.GOOGLE_MAPS_KEY}`
+    )
+    .then((response) => {
+      console.log(response);
+      return response.data.results[0].address_components
+        .slice(2, 4)
+        .map((addressComponent) => {
+          return addressComponent.long_name;
+        })
+        .join(", ");
+    });
+};
